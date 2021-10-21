@@ -12,11 +12,12 @@ pip3 install gpx_converter
 pip3 install pytest.qt
 pip3 install PyQt5
 
-chmod u+x CLI/runCLI.command
-chmod u+x runGUI.command
-chmod u+x runTest.command
+chmod u+x runGUI/runGUI.command
+chmod u+x runGUI/runTest.command
 
 
 python3 -m venv integrator/venv
-source integrator/venv/bin/activate
 pip3 install PyQt5 --user
+pip3 install gpx_converter --user
+
+source runGUI/integrator/venv/bin/activate
