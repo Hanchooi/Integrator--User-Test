@@ -118,6 +118,10 @@ class Integrator(QObject):
         mv data/*.json used\ data/${userID}/${userID}_${timeStamp}/
         mv data/*.gpx used\ data/${userID}/${userID}_${timeStamp}/
 
+	rm -rf data
+	mv output ..
+	mv used\ data/ ..
+
         echo "Used files are moved to "used data" folder"
 
 	echo "#################################"
