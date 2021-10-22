@@ -11,6 +11,7 @@ import time
 import os
 import pandas as pd
 
+
 @pytest.fixture
 def app(qtbot):
     integrator_app = Window()
@@ -44,22 +45,21 @@ def test_integrateButton(app):
 def test_click(app, qtbot):
     qtbot.mouseClick(app.loadFilesButton, QtCore.Qt.LeftButton)
     qtbot.mouseClick(app.integrateButton, QtCore.Qt.LeftButton)
-    time.sleep(5)
+    time.sleep(10)
+
+
+def test_base_files_exist():
+    assert os.path.isfile("../firstSetup.command") == True
+    assert os.path.isfile("../runGUI.command") == True
+    assert os.path.isfile("../Integrator_User_Manual_GUI.pdf") == True
 
 
 def test_output_exist():
-    assert os.path.isfile("output/finalData.csv") == True
-    assert os.path.isfile("output/output_garmin.csv") == True
+    assert os.path.isfile("../output/allBatches.csv") == True
 
-# for when full datasets available to be integrated
+
 def test_output_content():
-    with open("output/finalData.csv") as f:
+    # test using Real Test Data only
+    with open("../output/allBatches.csv") as f:
         txt = f.read().split("\n")
-    assert txt[0] == "id,date,latitude,longitude,speed,vis_name,vis_activity1,vis_activity2,vis_activity3,vis_lat,vis_long,loc_name,loc_lat,loc_long,garmin_lat,garmin_long,garmin_alt"
-
-def test_output_id():
-    with open("output/finalData.csv") as f: 
-        txt = f.read().split("\n")
-    id = txt[0][0]
-    for i in txt:
-        assert id == i[0]
+    assert txt[0] == "userId,unixTime,date,latitude,longitude,speed,mode_of_transport,anomalies,vis_lat,vis_long,vis_locName,vis_transport,vis_act1,vis_act_enjoyment1,vis_act2,vis_act_enjoyment2,vis_act3,vis_act_enjoyment3,vis_comment,poi_name,poi_lat,poi_long,garmin_lat,garmin_long,garmin_alt,lat_dif,lon_dif"
