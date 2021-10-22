@@ -5,7 +5,7 @@ else
     brew update
 fi
 
-brew install sqlite
+brew install sqlite3
 brew install python3
 brew install pip3
 pip3 install gpx_converter
@@ -13,3 +13,10 @@ pip3 install gpx_converter
 
 chmod u+x multiCLI.command
 chmod u+x /runCLI/singleCLI.command
+
+
+# MIGHT NEED
+
+# pip3 install gpx_converter --user
+# sudo pip3 install gpx_converter
+# sudo pip3 install gpx_converter --user
